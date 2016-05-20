@@ -49,13 +49,15 @@
 	NSString	*_string;
     
     /** font shadow */
-    bool    _shadowEnabled;
-    float   _shadowOpacity;
-    float   _shadowBlur;
-    CGSize  _shadowOffset;
+    bool        _shadowEnabled;
+    float       _shadowOpacity;
+    ccColor3B   _shadowColor;
+    float       _shadowBlur;
+    CGSize      _shadowOffset;
     
     /** font stroke */
     bool        _strokeEnabled;
+    float       _strokeOpacity;
     ccColor3B   _strokeColor;
     float       _strokeSize;
     
@@ -150,13 +152,29 @@
 
 
 /** enable or disable shadow for the label */
-- (void) enableShadowWithOffset:(CGSize)shadowOffset opacity:(float)shadowOpacity blur:(float)shadowBlur updateImage:(Boolean) mustUpdate;
+- (void) enableShadowWithOffset:(CGSize) shadowOffset
+                        opacity:(float) shadowOpacity
+                           blur:(float) shadowBlur
+                    updateImage:(Boolean) mustUpdate;
+
+- (void) enableShadowWithOffset:(CGSize) shadowOffset
+                        opacity:(float) shadowOpacity
+                          color:(ccColor3B) shadowColor
+                           blur:(float) shadowBlur
+                    updateImage:(Boolean) mustUpdate;
 
 /** disable shadow rendering */
 - (void) disableShadowAndUpdateImage:(Boolean)mustUpdate;
 
 /** enable or disable stroke */
-- (void) enableStrokeWithColor:(ccColor3B)strokeColor size:(float)strokeSize updateImage:(Boolean) mustUpdate;
+- (void) enableStrokeWithColor:(ccColor3B) strokeColor
+                          size:(float) strokeSize
+                   updateImage:(Boolean) mustUpdate;
+
+- (void) enableStrokeWithColor:(ccColor3B) strokeColor
+                       opacity:(float) strokeOpacity
+                          size:(float) strokeSize
+                   updateImage:(Boolean) mustUpdate;
 
 /** disable stroke */
 - (void) disableStrokeAndUpdateImage:(Boolean) mustUpdate;

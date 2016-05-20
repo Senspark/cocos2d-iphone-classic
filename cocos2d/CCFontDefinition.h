@@ -74,6 +74,9 @@
 -(void)    setShadowBlur:(CGFloat)blur;
 -(CGFloat) shadowBlur;
 
+@property (nonatomic, assign) ccColor3B shadowColor;
+@property (nonatomic, assign) CGFloat shadowOpacity;
+
 // stroke
 -(void)     enableStroke:(bool) strokeEnabled;
 -(bool)     strokeEnabled;
@@ -81,5 +84,7 @@
 -(CGFloat)  strokeSize;
 -(void)     setStrokeColor:(ccColor3B)strokeColor;
 -(ccColor3B)strokeColor;
+
+@property (nonatomic, assign) CGFloat strokeOpacity;
 
 @end

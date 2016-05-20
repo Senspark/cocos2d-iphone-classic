@@ -375,10 +375,23 @@
     return self;
 }
 
+- (void) enableShadowWithOffset:(CGSize) shadowOffset
+                        opacity:(float) shadowOpacity
+                           blur:(float) shadowBlur
+                    updateImage:(Boolean) mustUpdate {
+    [self enableShadowWithOffset:shadowOffset
+                         opacity:shadowOpacity
+                           color:ccBLACK
+                            blur:shadowBlur
+                     updateImage:mustUpdate];
+}
 
 /** enable or disable shadow for the label */
-- (void) enableShadowWithOffset:(CGSize)shadowOffset opacity:(float)shadowOpacity blur:(float)shadowBlur updateImage:(Boolean) mustUpdate
-{
+- (void) enableShadowWithOffset:(CGSize) shadowOffset
+                        opacity:(float) shadowOpacity
+                          color:(ccColor3B) shadowColor
+                           blur:(float) shadowBlur
+                    updateImage:(Boolean) mustUpdate {
     bool valueChanged = false;
     
     if (false == _shadowEnabled)
@@ -398,6 +411,12 @@
     if (_shadowOpacity != shadowOpacity )
     {
         _shadowOpacity = shadowOpacity;
+        valueChanged = true;
+    }
+    
+    if (ccc4FEqual(ccc4FFromccc3B(_shadowColor),
+                   ccc4FFromccc3B(shadowColor)) == NO) {
+        _shadowColor = shadowColor;
         valueChanged = true;
     }
     
@@ -428,13 +447,29 @@
 }
 
 /** enable or disable stroke */
-- (void) enableStrokeWithColor:(ccColor3B)strokeColor size:(float)strokeSize updateImage:(Boolean) mustUpdate
-{
+- (void) enableStrokeWithColor:(ccColor3B) strokeColor
+                          size:(float) strokeSize
+                   updateImage:(Boolean) mustUpdate {
+    [self enableStrokeWithColor:strokeColor
+                        opacity:1.0
+                           size:strokeSize
+                    updateImage:mustUpdate];
+}
+
+- (void) enableStrokeWithColor:(ccColor3B) strokeColor
+                       opacity:(float) strokeOpacity
+                          size:(float) strokeSize
+                   updateImage:(Boolean) mustUpdate {
     bool valueChanged = false;
     
     if(_strokeEnabled == false)
     {
         _strokeEnabled = true;
+        valueChanged = true;
+    }
+    
+    if (_strokeOpacity != strokeOpacity) {
+        _strokeOpacity = strokeOpacity;
         valueChanged = true;
     }
     
@@ -514,6 +549,7 @@
         {
             [retDefinition enableStroke: true];
             [retDefinition setStrokeColor: _strokeColor];
+            [retDefinition setStrokeOpacity:_strokeOpacity];
             
             if (resAdjust)
                 [retDefinition setStrokeSize: _strokeSize * CC_CONTENT_SCALE_FACTOR()];
@@ -531,6 +567,8 @@
         {
             [retDefinition enableShadow:true];
             [retDefinition setShadowBlur:_shadowBlur];
+            [retDefinition setShadowOpacity:_shadowOpacity];
+            [retDefinition setShadowColor:_shadowColor];
             
             if (resAdjust)
             {

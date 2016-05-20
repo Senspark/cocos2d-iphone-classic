@@ -829,7 +829,15 @@ static CCTexture2DPixelFormat defaultAlphaPixel_format = kCCTexture2DPixelFormat
     
     if ([definition shadowEnabled])
     {
-        CGFloat shadowC[4]          = {0.5, 0.5, 0.5, 0.5};
+        // Default shadow color is RGBA = 127/127/127/127
+        // CGFloat shadowC[4]          = {0.5, 0.5, 0.5, 0.5};
+        CGFloat shadowC[4] = {
+            [definition shadowColor].r / 255.0,
+            [definition shadowColor].g / 255.0,
+            [definition shadowColor].b / 255.0,
+            [definition shadowOpacity]
+        };
+        
         NSShadow *textShadow        = [[NSShadow alloc] init];
         
         NSColorSpace *colorSpace = [NSColorSpace sRGBColorSpace];
@@ -859,7 +867,8 @@ static CCTexture2DPixelFormat defaultAlphaPixel_format = kCCTexture2DPixelFormat
         strokeC[0] = ((float)[definition strokeColor].r)/255.0f;
         strokeC[1] = ((float)[definition strokeColor].g)/255.0f;
         strokeC[2] = ((float)[definition strokeColor].b)/255.0f;
-        strokeC[3] = 1.0f;
+        // strokeC[3] = 1.0f;
+        strokeC[3] = [definition strokeOpacity];
         
         NSColorSpace *colorSpace = [NSColorSpace sRGBColorSpace];
         NSColor *strokeColor     = [NSColor colorWithColorSpace:colorSpace components:strokeC count:COLOR_COMPONENTS];

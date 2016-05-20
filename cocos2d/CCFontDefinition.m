@@ -91,6 +91,22 @@
     return _shadow.m_shadowBlur;
 }
 
+- (void) setShadowOpacity:(CGFloat) shadowOpacity {
+    _shadow.m_shadowOpacity = shadowOpacity;
+}
+
+- (CGFloat) shadowOpacity {
+    return _shadow.m_shadowOpacity;
+}
+
+- (void) setShadowColor:(ccColor3B) shadowColor {
+    _shadow.m_shadowColor = shadowColor;
+}
+
+- (ccColor3B) shadowColor {
+    return _shadow.m_shadowColor;
+}
+
 -(void) enableStroke:(bool) strokeEnabled
 {
     _stroke.m_strokeEnabled = strokeEnabled;
@@ -119,6 +135,14 @@
 -(ccColor3B) strokeColor
 {
     return _stroke.m_strokeColor;
+}
+
+- (void) setStrokeOpacity:(CGFloat) opacity {
+    _stroke.m_strokeOpacity = opacity;
+}
+
+- (CGFloat) strokeOpacity {
+    return _stroke.m_strokeOpacity;
 }
 
 @end
