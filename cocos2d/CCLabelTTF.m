@@ -540,7 +540,7 @@
         retDefinition.lineBreakMode  = _lineBreakMode;
         retDefinition.alignment      = _hAlignment;
         retDefinition.vertAlignment  = _vAlignment;
-        retDefinition.lineBreakMode  = _lineBreakMode;
+        [retDefinition setDimensions:[self dimensions]];
         retDefinition.fontFillColor  = _textFillColor;
     
     
