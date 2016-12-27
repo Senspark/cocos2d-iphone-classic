@@ -19,9 +19,10 @@
  * SOFTWARE.
  */
 
-"																															\n\
+"                                                                                                                           \n\
+#if defined(GL_OES_standard_derivatives)                                                                                    \n\
 #extension GL_OES_standard_derivatives : enable																				\n\
-																															\n\
+#endif                                                                                                                      \n\
 #ifdef GL_ES																												\n\
 varying mediump vec4 v_color;																								\n\
 varying mediump vec2 v_texcoord;																							\n\
