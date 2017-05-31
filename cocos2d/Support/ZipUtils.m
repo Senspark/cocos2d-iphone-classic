@@ -222,6 +222,8 @@ static inline void caw_encdec (uint32_t *data, int len)
     // create long key
     if(!caw_longKeyValid)
     {
+        memset(caw_longKey, 0, enclen * sizeof(uint32_t));
+        
         uint32_t y;
         unsigned int p, rounds=6, e;
         
